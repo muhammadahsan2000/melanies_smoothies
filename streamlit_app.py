@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 from snowflake.snowpark.functions import col
 
 st.title(" :cup_with_straw: Customize Your Smoothie!:cup_with_straw:")
@@ -24,6 +25,9 @@ if ingredients_list:
         ingredients_string+=fruit_chosen+' '
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients,name_on_order)
             values ('""" + ingredients_string + """','"""+ name_on_order +"""')"""
+    
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+    st.text(fruityvice_response)
 
     time_to_insert=st.button('submit order')
     if time_to_insert:
