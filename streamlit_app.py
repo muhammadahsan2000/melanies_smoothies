@@ -27,7 +27,7 @@ if ingredients_list:
             values ('""" + ingredients_string + """','"""+ name_on_order +"""')"""
     
     fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-    st.text(fruityvice_response)
+    st.text(fruityvice_response.json())
 
     time_to_insert=st.button('submit order')
     if time_to_insert:
